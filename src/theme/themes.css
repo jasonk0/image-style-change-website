@@ -1,0 +1,20 @@
+:root[data-theme="theme-primary"] {
+	--bgc-color: #000000;
+	--font-color: #f4f4f9;
+	--font-color-gray: #cfcfd4;
+	--btn-color: #6200ff;
+	--btn-highlight-color: #8133ff;
+}
+:root[data-theme="theme-secondary"] {
+	--bgc-color: #230903;
+	--font-color: #e57a44;
+	--font-color-gray: #e26628;
+	--btn-color: #e7ecef;
+	--btn-highlight-color: #ffffff;
+}
+:root[data-theme="theme-fyk"] {
+	--bgc-color: #05a680;
+	--font-color: #58f7e7;
+	--btn-color: #2b303a;
+	--font-color-gray: #09eebc;
+}

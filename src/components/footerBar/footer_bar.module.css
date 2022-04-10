@@ -1,0 +1,21 @@
+.footerItem {
+	cursor: pointer;
+	color: var(--font-color-gray);
+}
+.footerItem:hover {
+	color: var(--font-color);
+}
+.wrapper {
+	display: inline-flex;
+	justify-content: space-around;
+	align-items: center;
+
+	min-width: 50vw;
+	width: 40rem;
+	max-width: 90vw;
+	border-top: 1px solid var(--font-color-gray);
+	font-size: 0.8rem;
+}
+.wrapper:hover {
+	border-top: 1px solid var(--font-color);
+}

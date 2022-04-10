@@ -1,0 +1,6 @@
+.box {
+	position: fixed;
+	right: 5vw;
+	top: 1.5vh;
+	border: 1px solid var(--font-color);
+}
