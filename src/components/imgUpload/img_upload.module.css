@@ -1,0 +1,18 @@
+.inputfile {
+	position: absolute;
+	clip: rect(0 0 0 0);
+}
+.label_button {
+	display: inline-block;
+	padding: 0.7rem 1.2rem;
+	margin: 0.5rem;
+	background-color: var(--btn-color);
+	font-weight: 700;
+	font-size: 1rem;
+	color: var(--font-color);
+	border: 0;
+}
+.label_button:hover {
+	background-color: var(--btn-highlight-color);
+	color: var(--font-color);
+}

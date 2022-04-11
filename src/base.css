@@ -24,7 +24,7 @@ button {
 	background-color: var(--btn-color);
 	font-weight: 700;
 	font-size: 1rem;
-	color: var(--font-color-gray);
+	color: var(--font-color);
 	border: 0;
 }
 button:hover {

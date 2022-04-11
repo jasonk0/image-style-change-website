@@ -4,6 +4,8 @@
 
 ### .tsx 文件被解析为 React，无法启动
 
+---
+
 安装插件 `@vitejs/plugin-vue-jsx`
 
 引入`vite.config.ts`并启动 `jsx()`
@@ -12,15 +14,21 @@
 
 ### CSSmodule
 
+---
+
 https://www.jianshu.com/p/be1778a76763
 
 ### 页面滑动时会出现跳动，漏出白边
+
+---
 
 因为只设置了#app 的背景颜色
 
 白边实则是 body 的背景颜色，默认是白色的；在设置背景颜色时，要将 body 也设置上。
 
 ### 浏览器的退回：url 已更改但页面不刷新
+
+---
 
 有种办法是监听 popstate 事件，然后调用 go(0)刷新；
 但是首先 SPA 应用就是不刷新的跳转路由，刷新了还用什么 vue-router。
@@ -61,6 +69,8 @@ return () => (
 
 ### defineComponent 和函数组件的区别？
 
+---
+
 defineComponent 是用来给 ts 提供更加全面严格的类型检查，当我们使用 jsx 的语法，有些 vue 生态中的类型，是不清晰的。
 defineComponent 会带着详尽的类型去返回 render 函数，相当于包装了一层。
 
@@ -75,6 +85,8 @@ defineComponent 会带着详尽的类型去返回 render 函数，相当于包�
 
 ### setup 意味着什么？
 
+---
+
 可以理解为制造闭包，将组件逻辑放在 setup 中；也可以传递 props ，context 给渲染函数；本质上其实是包装逻辑。
 
 另外回想一下 vue2 中的 options API，会有 methods、data 等一堆配置项，需要声明或者写一些逻辑都要找相应的配置项，
@@ -82,6 +94,8 @@ defineComponent 会带着详尽的类型去返回 render 函数，相当于包�
 每一个业务逻辑都可以成块的呈现。
 
 ### 对于不存在路有的重定向
+
+---
 
 输入了一个不存在的路由`/foo`，强行跳转就是空白页面。
 之前的版本可以用通配符`*`，重定向到首页。
@@ -91,6 +105,8 @@ defineComponent 会带着详尽的类型去返回 render 函数，相当于包�
 真佩服想出这个方法的人，巧妙！
 
 ### 配置别名
+
+---
 
 发现`vite.config.ts`引入不了 path 和 path/posix 包，没法用 resolve 解析地址。
 
@@ -104,6 +120,8 @@ defineComponent 会带着详尽的类型去返回 render 函数，相当于包�
 
 ### 主题切换
 
+---
+
 写一个主题切换，通过在根节点设置「CSS 自定义变量」，来达到全局统一风格，
 通过 css 的属性选择器，和根节点上的自定义属性去切换主题。
 
@@ -113,6 +131,8 @@ SetTheme.ts 提供了更换主题的方法`setTheme`和初始化默认主题的�
 
 ### home 布局
 
+---
+
 采用 flexable 布局 主轴 column，两根轴都 center
 
 为了保证头部和底部的位置，设置他们 flex-grow 为 0；而中间的内容设置 flex-grow 为 1；并保证容器 wrapper 的最小高度为 100vh
@@ -121,8 +141,30 @@ SetTheme.ts 提供了更换主题的方法`setTheme`和初始化默认主题的�
 
 ### 图片上传
 
+---
+
+**web 端实现上传图片，并预览。**
+
+使用 `<input>` 获取图片，在事件中拿到`files`，类型为`FileLists`，里边是上传的文件。
+
+然后通过`createObjectURL`将文件对象转化为相关 MIME 的 URL
+
+将 url 更新到`<img>`标签就可以实现预览。
+
+另外，封装了 Select 和 Input，通过 onChange 触发修改 Ref 后的 value 值，从而实现响应式双向绑定。
+也就是这边输入，绑定的 value 值跟着变化，并可以呈现在 DOM 上。
+
+> 学到了`PropType`做类型转换，props 里的 type 只能指定基础数据类型，不能加范型、窄化什么的；找了找果然 vue 是有解决方案的——`PropType`
+
+关于隐藏 file 类型的`<input>`，加上 css 样式`position:absolute;clet(0,0,0,0)`即可；
+事件的触发可以使用`<label>`标签 for 指向 input 的 id（label 是个行内元素！）
+
+> 参考[MDN 上的例子](https://developer.mozilla.org/zh-CN/docs/Web/API/File/Using_files_from_web_applications)
+>
+> 不得不说，mdn 上有太多实用但是需要探索的实例了。简直是个宝藏库
+
+**服务端**
+
 ## 可能用得到
 
 ### 图片上传
-
-https://blog.51cto.com/u_15127621/3267355
