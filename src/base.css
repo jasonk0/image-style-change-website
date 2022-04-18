@@ -31,3 +31,8 @@ button:hover {
 	background-color: var(--btn-highlight-color);
 	color: var(--font-color);
 }
+
+img{
+	max-width: 30vw;
+
+}

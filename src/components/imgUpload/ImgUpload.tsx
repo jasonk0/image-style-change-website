@@ -1,4 +1,4 @@
-import { defineComponent, ref, reactive, Ref, toRefs, PropType } from "vue";
+import { defineComponent, ref, reactive, Ref, toRefs, PropType, shallowReactive, isShallow } from "vue";
 import classes from './img_upload.module.css'
 import demo4 from "@/assets/demo4.jpeg"
 import { Url } from "url";
@@ -6,11 +6,11 @@ import { Url } from "url";
 type Lists = Array<string> | Array<{ value: string | number, name: string }>
 const lists = ['梵高', '朋克', '像素风', '二次元']
 const zoomLists = [{ value: null, name: "不缩放" }, { value: 100 * 80, name: '100*80' }, { value: 400 * 500, name: '400*500' }]
+
 const ImgUpload = defineComponent({
 
 
   props: {
-    styleList: { type: Array as PropType<Lists>, default: lists },
     maxSize: { type: Number, default: 1024 * 1024 },
     zoomOptions: { type: Array as PropType<Lists>, default: zoomLists }
   },
@@ -20,10 +20,13 @@ const ImgUpload = defineComponent({
     const formData = reactive({ style: '', images: [] as Array<string>, zoom: '' })
     const { style, images, zoom } = toRefs(formData)
 
+
     const imageSelector = (imgs: FileList) => {
       for (let i = 0; i < imgs.length; i++) {
         images.value.push(getFileURL(imgs[i]))
       }
+      console.log(images.value)
+
     }
 
     const getFileURL = (file: File) => {
@@ -37,40 +40,23 @@ const ImgUpload = defineComponent({
       return url;
     }
 
-    return () => <>
-      <form action="/" method="POST">
-
-        <Select name="style-select" lists={props.styleList} value={style} />
-        <Select name="zoom-select" lists={props.zoomOptions} value={zoom} />
+    return () => <div class={classes.wrapper}>
+      <div style={"display: flex;"}>
 
         <input type="file" accept=".jpeg" multiple class={classes.inputfile} id="file"
           onChange={(e) => imageSelector((e.target as HTMLInputElement).files!)} />
-        <label for="file" class={classes.label_button}>这是个按钮</label>
-
-        {images.value.length ?
-          '' : images.value.map(image => <img class={"preview"} src={image} alt="preview"></img>)}
-        {/* <img class={"preview"} src={images.value} alt="preview"></img> */}
-      </form>
-    </>
+        <label for="file" class={classes.label_button}>上传</label>
+      </div>
+      <div class={classes.preview_div}>
+        {images.value.map(image => <img src={image} alt="preview"></img>)}
+        {/* <img class={"preview"} src={images.value[0]} alt="preview"></img> */}
+      </div>
+    </div>
   }
 })
 
-const Select = ({ name, lists, value }: {
-  name: string, lists: Lists, value: Ref<string>
-}) => {
 
-  return <>
-    <label for={name}>
-      <select name={name} id={name} onChange={(e) => value.value = (e.target as HTMLOptionElement).value}>
-        {lists.map(l => {
-          return <option value={() => typeof l == 'object' ? l.value : l
-          }> {typeof l == 'object' ? l.name : l}</option>
-        })}
-      </select>
-    </label>
 
-  </>
-}
 
 const Input = ({ value }: { value: Ref<String> }) => {
   return <>

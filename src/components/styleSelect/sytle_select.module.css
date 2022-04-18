@@ -1,0 +1,13 @@
+.wrapper img {
+  border: 2px solid var(--bgc-color);
+  
+}
+.active  img{
+  border: 2px solid var(--btn-color);
+}
+.label {
+  cursor: pointer;
+}
+.wrapper {
+  padding: 5px;
+}
