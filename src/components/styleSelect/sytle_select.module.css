@@ -1,9 +1,12 @@
 .wrapper img {
-  border: 2px solid var(--bgc-color);
-  
+  border: 4px solid var(--bgc-color);
+  max-height: 200px ;
+
+  width: 100%;
+  object-fit:cover;
 }
 .active  img{
-  border: 2px solid var(--btn-color);
+  border: 4px solid var(--btn-color);
 }
 .label {
   cursor: pointer;
