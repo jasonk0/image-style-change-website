@@ -15,11 +15,12 @@ const StyleSelect = defineComponent({
   },
   setup(props, { emit }) {
     const styleList = props.styleList?.map(o => reactive(o))
-    let selectStyle = 'default'
+    let selectStyle = 'vangogh'
     // 获取选取目标
-    const select = (name: string) => {
-      selectStyle = name
-      toggle(name)
+    const select = (value: string) => {
+      console.log(value)
+      selectStyle = value
+      toggle(value)
       emit('style', selectStyle)
     }
     // 控制items的选中状态

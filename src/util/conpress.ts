@@ -1,4 +1,4 @@
-const MAX_WIDTH = 200;
+const MAX_WIDTH = 256;
 
 const compress = (
 	url: string,

@@ -53,7 +53,7 @@
 }
 .preview_div img {
 	margin: 0 5px;
-	width: 200px;
+	/* width: 200px; */
 }
 .preview_div canvas {
 	margin: 0 5px;

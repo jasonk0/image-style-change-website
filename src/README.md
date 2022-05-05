@@ -128,6 +128,21 @@ defineComponent 会带着详尽的类型去返回 render 函数，相当于包�
 >
 > [MDN](https://developer.mozilla.org/zh-CN/docs/Web/CSS/object-fit)
 
+### formData 的提交
+
+---
+
+在后端读取`req.body`时发现为空对象，因为我的 POST 方式为`multipart/form-data`。
+
+POST 请求：formData 的提交方式主流有`application/x-www-form-urlencoded`和`multipart/form-data`
+
+前者是默认提交方式，会以键值对的形式提交，适合简单的表单提交，在请求体中。
+
+后者是在`<form>`中使用时需要设置`enctype`，在 body 中会使用`boundary`分开，适合做文件的上传；
+相对应后端的读取需要借助`connect-multipart`中间件去解析`boundary`，并转化成可读取的对象。
+
+> 参考这两位，[一](https://imququ.com/post/four-ways-to-post-data-in-http.html)，[二](https://lipeishang.github.io/2017/08/14/%E5%A1%AB%E5%9D%91%E7%AC%94%E8%AE%B0%E2%80%94Nodejs%E8%8E%B7%E5%8F%96form-data%E6%95%B0%E6%8D%AE/)
+
 ## 进展
 
 ### 主题切换
@@ -189,6 +204,18 @@ SetTheme.ts 提供了更换主题的方法`setTheme`和初始化默认主题的�
 从上边拿下来的 list`Array<object>`数据，如果需要转为响应式可以遍历数组用 reactive 包装每个元素。
 
 **服务端**
+
+1. 完善了图片上传功能
+
+采取 formData(multipart: form-data)上传的方式，服务端通过 multipart 中间件来解析文件，blob 文件在`req.files`里
+
+2. 完善了操作模型 CycleGAN 的功能，通过 shelljs 操作 python 的命令语句；并将返回给前端的 base64 图片改为 url 格式，前端即拿即用。
+
+3. 小 bug 在一次上传后，第二次就会报 writeFilesync 的错误，`no such file`
+
+找到了原因，路径问题，不可以直接`./first/second/target`去找，应该是使用 dirname`${__dirname}/first/second/target`
+
+像第一种写法可能第一次可以找到地址，第二次就找不到了。
 
 ## 可能用得到
 

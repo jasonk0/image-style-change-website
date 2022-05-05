@@ -1,4 +1,4 @@
-import { defineComponent, ref, reactive, Ref, toRefs, PropType, shallowReactive, isShallow } from "vue";
+import { defineComponent, ref, reactive, toRefs, PropType, shallowReactive, isShallow, Ref } from "vue";
 import classes from './img_upload.module.css'
 import demo4 from "@/assets/demo4.jpeg"
 import { compress, getFileURL } from '@/util/conpress'
@@ -13,8 +13,7 @@ const ImgUpload = defineComponent({
 
 
   props: {
-    maxSize: { type: Number, default: 1024 * 1024 },
-    zoomOptions: { type: Array as PropType<Lists>, default: zoomLists },
+    imgEd: { type: Object as PropType<Ref<Array<string>>> },
     onImage: Function
   },
 
@@ -32,7 +31,8 @@ const ImgUpload = defineComponent({
     const imageSelector = async (imgs: FileList) => {
       // 图片的上传，把upload柯里化接受style和images两个参数，够了再执行
       for (let i = 0; i < imgs.length; i++) {
-        const { imageData, base64, canvas } = await compress(getFileURL(imgs[i]), 60)
+        const { imageData, base64, canvas } = await compress(getFileURL(imgs[i]), 100)
+
         images.value.push(imageData!)
         // 使用img标签
         // images.value.push(base64)
@@ -40,7 +40,7 @@ const ImgUpload = defineComponent({
         const preview = document.getElementsByClassName(classes.preview_div)[0]
         preview.appendChild(canvas)
       }
-      console.log(images.value)
+      // console.log(images.value)
       emit('image', images.value)
     }
 
@@ -55,7 +55,7 @@ const ImgUpload = defineComponent({
       </div>
       <div class={classes.preview_div} >
         {/* {images.value.map(image => <img src={image} alt="preview"></img>)} */}
-        {/* <img class={"preview"} src={images.value[0]} alt="preview"></img> */}
+        {props.imgEd?.value?.map(url => <img src={url} alt="showEd"></img>)}
       </div>
     </div>
   }

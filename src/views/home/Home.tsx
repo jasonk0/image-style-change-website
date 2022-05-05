@@ -5,15 +5,16 @@ import { StyleSelect } from '@/components/styleSelect/StyleSelect'
 import { Curring } from '@/util'
 import { upload } from '@/api/api'
 import { reactive, ref } from 'vue'
+import { blob } from 'node:stream/consumers'
 
 
 
 
 const styleLists = [
-  { name: '梵高', value: '', key: 'style-vango' },
-  { name: "像素", value: '', key: 'style-pixel' },
-  { name: "莫奈", value: '', key: 'style-mona' },
-  { name: "冬天", value: '', key: "style-winter" }
+  { value: "", name: 'vangogh', key: 'style-vango' },
+  { value: "", name: 'cezanne', key: 'style-pixel' },
+  { value: "", name: 'monet', key: 'style-mona' },
+  { value: "", name: 'ukiyoe', key: "style-winter" }
 ]
 
 
@@ -24,6 +25,7 @@ styleLists.map(o => {
 export const Home = () => {
   const style = ref('')
   const image = ref()
+  const imgEd = ref()
 
   const getStyle = (_style: string) => {
     style.value = _style
@@ -32,19 +34,23 @@ export const Home = () => {
 
     image.value = images
   }
-  const uploadForm = Curring((style: string, image: Blob | Array<Blob>) => {
+  const uploadForm = () => {
+    if (style.value == '' || image.value == undefined) return console.log('请选择风格及图片')
+
     const _form = new FormData()
-    _form.append("style", style)
-    if (image instanceof Array) {
-      for (let _i of image) {
-        _form.append("image", _i, '111')
-      }
-    } else {
-      _form.append("image", image, '222')
+    let index = 0
+    _form.append("style", style.value)
+
+    for (let img of image.value) {
+      _form.append(`${index++}`, img)
     }
-    console.log(_form.getAll("style"))
-    return upload(_form)
-  })
+    _form.append('nums', `${index}`)
+
+    upload(_form).then((url) => {
+      imgEd.value = url!
+    })
+
+  }
 
   return (<>
     <div class={classes.wrapper}>
@@ -58,11 +64,9 @@ export const Home = () => {
         </div>
 
         <div class={classes.upload}>
-          <ImgUpload onImage={getImgae}></ImgUpload>
-          <button onClick={() => {
-            if (style.value !== '' && image.value?.length) uploadForm(style.value, image.value)
-          }}> UPLOAD</button>
+          <ImgUpload onImage={getImgae} imgEd={imgEd}></ImgUpload>
         </div>
+        <button onClick={() => uploadForm()}> UPLOAD</button>
 
 
       </container>
