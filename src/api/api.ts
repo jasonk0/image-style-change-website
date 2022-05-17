@@ -12,7 +12,6 @@ async function upload(form: FormData) {
 		});
 		// const blob = await res.blob();
 		const json = await res.json();
-		console.log(json);
 		return json;
 	} catch (error) {
 		return console.log(error);

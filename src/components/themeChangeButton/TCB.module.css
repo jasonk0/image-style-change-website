@@ -4,3 +4,8 @@
 	top: 1.5vh;
 	border: 1px solid var(--font-color);
 }
+@media (max-width: 1072px) {
+	.box {
+		display: none;
+	}
+}
