@@ -1,6 +1,9 @@
 import { createRouter, createWebHistory, RouteMeta, Router } from "vue-router";
-import { About } from "@/views/about/About";
 import { Home } from "@/views/home/Home";
+
+import About from "@/views/about/About";
+import Issues from "@/views/issues/issues";
+import Cyclegan from "@/views/cyclegan/cyclegan";
 
 const routes = [
 	{
@@ -12,6 +15,16 @@ const routes = [
 		path: "/about",
 		name: "about",
 		component: About,
+	},
+	{
+		path: "/issues",
+		name: "issues",
+		component: Issues,
+	},
+	{
+		path: "/cyclegan",
+		name: "cyclegan",
+		component: Cyclegan,
 	},
 	{
 		path: "/:w+",

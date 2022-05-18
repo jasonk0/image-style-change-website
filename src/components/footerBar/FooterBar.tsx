@@ -3,29 +3,17 @@ import { router } from '@/router'
 import classes from './footer_bar.module.css'
 
 const bar = [{
-  path: '/about',
-  name: 'About',
-  model: 'history',
-}, {
-  path: '/about',
-  name: '关于',
-  model: 'history',
+  path: "/about",
+  name: "About",
 },
 {
-  path: '/about',
-  name: '关于',
-  model: 'history',
+  path: "/issues",
+  name: "Issues",
 },
 {
-  path: '/about',
-  name: '关于',
-  model: 'history',
+  path: "/cyclegan",
+  name: "Cyclegan",
 },
-{
-  path: '/about',
-  name: '关于',
-  model: 'history',
-}
 ]
 type Route = { path: string; name: any }
 

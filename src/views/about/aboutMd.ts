@@ -1,4 +1,5 @@
-## Magic Mirror
+export default {
+	text: `## Magic Mirror
 
 一个图像风格迁移网站
 
@@ -26,3 +27,6 @@
 vue3 + vite + ts 还是有很多坑的，虽然写的代码和功能不多，但是这坑真是一个接一个。
 
 日后总结后我会放到这个网站的导航栏中。
+
+`,
+};

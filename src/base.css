@@ -36,3 +36,19 @@ img{
 	max-width: 30vw;
 
 }
+
+.wrapper{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  /* min-height: 100vh; */
+  min-width: 100vw;
+}
+.md {
+  width: 40% !important;
+  height: 100% !important;
+}
+.md-dark {
+	background-color: var(--bgc-color) !important; 
+}
