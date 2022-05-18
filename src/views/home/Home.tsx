@@ -5,7 +5,7 @@ import { StyleSelect } from '@/components/styleSelect/StyleSelect'
 import { Curring, processCanvas } from '@/util'
 import { upload } from '@/api/api'
 import { onMounted, reactive, ref } from 'vue'
-import { blob } from 'node:stream/consumers'
+
 
 
 
@@ -13,9 +13,9 @@ import { blob } from 'node:stream/consumers'
 
 const styleLists = [
   { value: "", name: 'vangogh', key: 'style-vango' },
-  { value: "", name: 'cezanne', key: 'style-pixel' },
-  { value: "", name: 'monet', key: 'style-mona' },
-  { value: "", name: 'ukiyoe', key: "style-winter" }
+  { value: "", name: 'cezanne', key: 'style-cezanne' },
+  { value: "", name: 'monet', key: 'style-monet' },
+  { value: "", name: 'ukiyoe', key: "style-ukiyoe" }
 ]
 
 

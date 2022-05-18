@@ -1,6 +1,3 @@
-import { stringifyStyle } from "@vue/shared"
-import { type } from "os"
-import { emit } from "process"
 import { defineComponent, PropType, reactive, toRef } from "vue"
 import classes from './sytle_select.module.css'
 
