@@ -14,8 +14,8 @@ body {
 .primary {
 	background-color: var(--bgc-color);
 	color: var(--font-color);
-	min-height: 100vh;
-	min-width: 100vw;
+	/* min-height: 100vh; */
+	/* min-width: 100vw; */
 }
 
 button {

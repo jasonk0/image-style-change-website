@@ -4,10 +4,59 @@
     <meta charset="UTF-8" />
     <link rel="icon" href="/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite App</title>
+    <title>Image Transfer</title>
+    <style>
+  
+      .container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 16px;
+      }
+      .content {
+        flex: 1;
+      }
+      
+      .footer {
+        text-align: center;
+        font-size: 14px;
+        color: #6c757d;
+        border-top: 1px solid #e9ecef;
+      }
+      
+      .copyright, .beian {
+        margin: 5px 0;
+      }
+      
+      .beian a {
+        color: #6c757d;
+        text-decoration: none;
+      }
+      
+      .beian a:hover {
+        color: #495057;
+        text-decoration: underline;
+      }
+    </style>
   </head>
   <body>
     <div id="app"></div>
     <script type="module" src="/src/main.ts"></script>
+    <footer class="footer">
+      <div class="container">
+        <div class="copyright">
+          © <span id="current-year"></span> Jasonk0 版权所有
+        </div>
+        <div class="beian">
+          <a href="https://beian.miit.gov.cn/" target="_blank">豫ICP备2023030538号-1</a>
+        </div>
+      </div>
+    </footer>
+    
+    <script>
+      // 自动更新年份
+      document.getElementById('current-year').textContent = new Date().getFullYear();
+    </script>
   </body>
 </html>
+
